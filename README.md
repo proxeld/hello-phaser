@@ -1,2 +1,7 @@
 # hello-phaser
-Introductory project for Phaser
+
+Introductory project to Phaser framework
+
+## States
+* creation
+* change
