@@ -1,7 +1,7 @@
 // global object of the game
 var game,
     config = {
-        IMG_PATH: 'assets/images/'
+        IMG_PATH: 'src/assets/images/'
     };
 
 function bootstrapGame(target) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // STATES, TRANSITIONS, EVENTS
 ///////////////////////////////////////////////
 
-Loading = {
+var Loading = {
     preload: function () {
         game.load.image('loadingBg', config.IMG_PATH + 'loadingBg.png');
     },
@@ -67,7 +67,7 @@ Loading = {
 };
 
 
-Menu = {
+var Menu = {
     init: function () {
         console.info('Initialization of Menu state.');
     },
@@ -97,7 +97,7 @@ Menu = {
 
 ///////////////////////////////
 // TODO: create gameplay state
-Gameplay = {
+var Gameplay = {
     create: function () {
         this.escapeKey = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
         this.escapeKey.onDown.add(Gameplay.goToMainMenu, this);
