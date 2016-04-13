@@ -10,12 +10,10 @@ function bootstrapGame(target) {
     game = new Phaser.Game(1280, 720, Phaser.AUTO, target);
 
     // add new state to game
-    game.state.add('Menu', Menu);
+    game.state.add('Loading', Loading);
 
     //////////////////////////////////////
     // TODO: add other states to the game
-    game.state.add('Loading', Loading);
-    game.state.add('Gameplay', Gameplay);
 
     // start first state
     game.state.start('Loading');
@@ -44,12 +42,8 @@ var Loading = {
             game.scale.setUserScale(ratioW, ratioH);
         }, this);
 
-        // specify what happens on complete of resource loading
-        game.load.onLoadComplete.add(function () {
-            //////////////////////////////////////
-            // TODO: change state to main menu
-            game.state.start('Menu');
-        }, this);
+        // TODO: change state to main menu
+        // TODO: specify what happens on complete of resource loading
 
         var background = game.add.sprite(game.width / 2, game.height / 2, 'loadingBg');
         // move to center
@@ -57,8 +51,6 @@ var Loading = {
 
         // load other resources - graphics, sounds, etc.
         game.load.image('btnPlay', config.IMG_PATH + 'playBtn.png');
-        //////////////////////////////////////
-        // TODO: load menu background
         game.load.image('menuBg', config.IMG_PATH + 'menuBg.png');
 
         // start Phaser loading routine
@@ -80,32 +72,17 @@ var Menu = {
         var w = game.width,
             h = game.height;
 
-        /////////////////////////////
-        // TODO: add menu background
         var background = game.add.sprite(w / 2, h/ 2, 'menuBg');
         // move to center
         background.anchor.setTo(0.5);
 
         // 4-th argument defines function that will be called after clicking on button
-        var btnPlay = game.add.button(w/2, h/2, 'btnPlay', Menu.startGame);
-        btnPlay.anchor.setTo(0.5);
+        // TODO: add button with callback on click event
+
     },
-    startGame: function () {
-        game.state.start('Gameplay');
-    }
+    // TODO: implement start game function
+
 };
 
 ///////////////////////////////
 // TODO: create gameplay state
-var Gameplay = {
-    create: function () {
-        this.escapeKey = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
-        this.escapeKey.onDown.add(Gameplay.goToMainMenu, this);
-    },
-    update: function () {
-        
-    },
-    goToMainMenu: function () {
-        game.state.start('Menu');
-    }
-};
